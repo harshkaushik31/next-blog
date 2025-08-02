@@ -48,46 +48,11 @@ const Page = ({}) => {
 
       <div className="mx-5 max-w-[800px] md:mx-auto mt-[-100px] mb-10 ">
         <Image src={data.image} width={1280} height={720} alt='' className="border-4 border-white" />
-        <h1 className="my-8 text-[26px] font-semibold">
-           Introduction: 
-        </h1>
-        <p>
-            {data.description}
-        </p>
-        <h3 className="my-5 text-[18px] font-semibold">
-            Self-Reflections and goal setting
-        </h3>
-        <p className="my-3 ">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio inventore aliquid praesentium error. Odit obcaecati error labore, quod reprehenderit earum excepturi possimus cupiditate animi!
-        </p>
-        <p className="my-3 ">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio inventore aliquid praesentium error. Odit obcaecati error labore, quod reprehenderit earum excepturi possimus cupiditate animi!
-        </p>
-        <h3 className="my-5 text-[18px] font-semibold">
-            Self-Reflections and goal setting
-        </h3>
-        <p className="my-3 ">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio inventore aliquid praesentium error. Odit obcaecati error labore, quod reprehenderit earum excepturi possimus cupiditate animi!
-        </p>
-        <p className="my-3 ">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio inventore aliquid praesentium error. Odit obcaecati error labore, quod reprehenderit earum excepturi possimus cupiditate animi!
-        </p>
-        <h3 className="my-5 text-[18px] font-semibold">
-            Self-Reflections and goal setting
-        </h3>
         
-        <p className="my-3 ">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio inventore aliquid praesentium error. Odit obcaecati error labore, quod reprehenderit earum excepturi possimus cupiditate animi!
-        </p>
-        <p className="my-3 ">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio inventore aliquid praesentium error. Odit obcaecati error labore, quod reprehenderit earum excepturi possimus cupiditate animi!
-        </p>
-        <h3 className="my-5 text-[18px] font-semibold">
-            Conclusion
-        </h3>
-        <p className="my-3 ">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio inventore aliquid praesentium error. Odit obcaecati error labore, quod reprehenderit earum excepturi possimus cupiditate animi!
-        </p>
+        <div className="blog-content" dangerouslySetInnerHTML={{__html:data.description}}>
+
+        </div>
+        
 
         <div className="my-24">
             <p className="text-black font-semibold my-4">Share this article on social media</p>
