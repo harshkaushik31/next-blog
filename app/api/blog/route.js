@@ -28,34 +28,48 @@ export async function GET(request){
 }
 
 // API End point for uploading blogs
-export async function POST(request){
+export async function POST(request) {
+  try {
     const formData = await request.formData();
     const timestamp = Date.now();
-   
+
     const image = formData.get('image');
+
+    if (!image || typeof image.arrayBuffer !== 'function') {
+      return NextResponse.json(
+        { success: false, message: 'No image uploaded or invalid format' },
+        { status: 400 }
+      );
+    }
+
     const imageByteData = await image.arrayBuffer();
     const buffer = Buffer.from(imageByteData);
-    const path = `./public/${timestamp}_${image.name}` 
+    const path = `./public/${timestamp}_${image.name}`;
     await writeFile(path, buffer);
     const imageURL = `/${timestamp}_${image.name}`;
 
     const blogData = {
-        title: `${formData.get('title')}`,
-        description: `${formData.get('description')}`,
-        category: `${formData.get('category')}`,
-        author: `${formData.get('author')}`,
-        image: `${imageURL}`,
-        // authorImg: `${formData.get('authorImage')}`
-        authorImg: `/authorImg.png`
-    }
+      title: formData.get('title'),
+      description: formData.get('description'),
+      category: formData.get('category'),
+      author: formData.get('author'),
+      image: imageURL,
+      authorImg: `/authorImg.png`,
+    };
 
     await BlogModel.create(blogData);
-    console.log('Blog Saved');
-    
-    console.log(imageURL);
+    console.log('Blog Saved:', imageURL);
 
-    return NextResponse.json({success: true,msg: "Blog Added"})
+    return NextResponse.json({ success: true, msg: 'Blog Added' });
+  } catch (error) {
+    console.error('Error in POST /api/blog:', error);
+    return NextResponse.json(
+      { success: false, message: 'Server error' },
+      { status: 500 }
+    );
+  }
 }
+
 
 // Creating api end-point to delete blog
 export async function DELETE(request){
