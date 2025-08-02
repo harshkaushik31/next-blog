@@ -1,5 +1,6 @@
 import { Outfit} from "next/font/google";
 import "./globals.css";
+import ToastProvider from "@/Components/ToastProvider";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
         className={`${outfit.variable}`}
       >
         {children}
+        <ToastProvider/>
       </body>
     </html>
   );
